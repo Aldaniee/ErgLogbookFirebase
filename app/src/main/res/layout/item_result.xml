@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text="6:00"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+    <TextView
+        android:id="@+id/metersTextView"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text="2000"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:id="@+id/measurementTextView"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text="1:30"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:id="@+id/rateTextView"
+        android:layout_width="3dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="30"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:id="@+id/hrTextView"
+        android:layout_width="3dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="180"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+</LinearLayout>

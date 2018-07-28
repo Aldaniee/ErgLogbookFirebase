@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Log Book</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="save_button_label">Save</string>
+
+    <string name="transition_drawable">drawable</string>
+    <string name="transition_workout">workout</string>
+    <string name="transition_date">date</string>
+    <string name="title_toolbar">All Entries</string>
+    <string name="error_no_extra_found" />
+    <string name="creates_a_new_entry">Creates a new Entry</string>
+    <string name="navigates_to_list_view">Navigates to list view</string>
+    <string name="camera_text_view">Camera</string>
+    <string name="writeFab">Write</string>
+    <string name="camera_result">Deletes picture when clicked</string>
+    <string name="camera_unavailable">The camera is unavailable</string>
+    <string name="takes_a_picture">Takes a picture</string>
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="no_entries_message">Make an entry by clicking the plus in the bottom right</string>
+    <string name="workout_not_found">Enter Workout</string>
+
+</resources>
