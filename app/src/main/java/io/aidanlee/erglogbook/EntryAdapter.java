@@ -2,6 +2,7 @@ package io.aidanlee.erglogbook;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EntryAdapter extends ArrayAdapter<Entry> {
@@ -17,8 +20,9 @@ public class EntryAdapter extends ArrayAdapter<Entry> {
         super(context, resource, objects);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_entry, parent, false);
         }

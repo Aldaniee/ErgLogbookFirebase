@@ -5,14 +5,16 @@ import android.os.Parcelable;
 
 import com.google.firebase.database.Exclude;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Entry implements Parcelable {
     // UNIQUE IDENTIFYING VALUES
     private String username;
-    private String timeAndDate;
+    private String key;
 
     // OPTIONAL VALUES
     private String workout;
@@ -20,13 +22,13 @@ public class Entry implements Parcelable {
     private Result overall;
     private List<Result> breakdown;
 
-    public Entry(String username, String timeAndDate) {
+    public Entry(String username, String key) {
         this.username = username;
-        this.timeAndDate = timeAndDate;
+        this.key = key;
     }
-    public Entry(String username, String timeAndDate, String photoUrl) {
+    public Entry(String username, String key, String photoUrl) {
         this.username = username;
-        this.timeAndDate = timeAndDate;
+        this.key = key;
         this.photoUrl = photoUrl;
     }
 
@@ -35,7 +37,7 @@ public class Entry implements Parcelable {
 
     protected Entry(Parcel in) {
         username = in.readString();
-        timeAndDate = in.readString();
+        key = in.readString();
         workout = in.readString();
         photoUrl = in.readString();
         overall = in.readParcelable(Result.class.getClassLoader());
@@ -45,7 +47,7 @@ public class Entry implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
-        dest.writeString(timeAndDate);
+        dest.writeString(key);
         dest.writeString(workout);
         dest.writeString(photoUrl);
         dest.writeParcelable(overall, flags);
@@ -93,12 +95,12 @@ public class Entry implements Parcelable {
         this.photoUrl = photoUrl;
     }
 
-    public String getTimeAndDate() {
-        return timeAndDate;
+    public String getKey() {
+        return key;
     }
 
-    public void setTimeAndDate(String timeAndDate) {
-        this.timeAndDate = timeAndDate;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public Result getOverall() {

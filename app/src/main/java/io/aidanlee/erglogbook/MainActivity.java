@@ -36,12 +36,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String mUsername;
     private List<Entry> entries;
-    private int editPosition; // used to save the position of an entry when it is edited
+    private String editKey; // used to save the position of an entry when it is edited
 
     // Floating Action Buttons
     private boolean fabOpen;
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mEntriesDatabaseReference = mFirebaseDatabase.getReference().child("entries");
+        mEntriesDatabaseReference = mFirebaseDatabase.getReference().child("adapterEntries");
         mPhotosStorageReference = mFirebaseStorage.getReference().child("photos");
 
 
@@ -126,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         initializeFloatingActionButton();
 
         // Initialize entry ListView and its adapter
-        entries = new ArrayList<>();
+        entries = new ArrayList<Entry>();
         mEntryAdapter = new EntryAdapter(this, R.layout.item_entry, entries);
         mEntryListView.setAdapter(mEntryAdapter);
         mEntryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,11 +137,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent i = new Intent(getApplicationContext(), EntryDisplayActivity.class);
-                editPosition = position;
+
                 Entry entry = entries.get(position);
                 //Passes the entry (as a parcelable object) into the display activity
                 i.putExtra(ENTRY_EXTRA, entry);
-
                 startActivityForResult(i, RC_EDIT_ENTRY);
             }
         });
@@ -246,24 +248,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String photoUrl = uri.toString();
-                                    String timeAndDate = getCurrentTimeAndDate();
-                                    Entry entry = new Entry(mUsername, timeAndDate, photoUrl);
+                                    String key = mEntriesDatabaseReference.push().getKey();
+                                    Entry entry = new Entry(mUsername, key, photoUrl);
                                     entry.setWorkout(DEFAULT_WORKOUT);
                                     entry.setOverallString(DEFAULT_OVERALL_RESULTS, DEFAULT_RECORDED_UNITS);
                                     entry.setBreakdownString(DEFAUlT_BREAKDOWN_RESULTS, DEFAULT_BREAKDOWN_LINES, DEFAULT_RECORDED_UNITS);
-                                    mEntriesDatabaseReference.push().setValue(entry);
+                                    mEntriesDatabaseReference.child(key).setValue(entry);
                                 }
                             });
                         }
                     });
         }
         else if (requestCode == RC_EDIT_ENTRY) {
-            if(getIntent().hasExtra(ENTRY_EXTRA)) {
+            if(data != null && data.hasExtra(ENTRY_EXTRA)) {
                 Entry newEntry = data.getParcelableExtra(ENTRY_EXTRA);
-                Entry oldEntry = entries.get(editPosition);
-                Toast.makeText(this,"yes",Toast.LENGTH_SHORT).show();
-                if (newEntry != oldEntry)
-                    mEntriesDatabaseReference.push().setValue(newEntry);
+                String key = newEntry.getKey();
+                mEntriesDatabaseReference.child(key).setValue(newEntry);
             }
         }
     }
@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                    Entry entry = dataSnapshot.getValue(io.aidanlee.erglogbook.Entry.class);
                 }
 
                 @Override
@@ -356,5 +356,8 @@ public class MainActivity extends AppCompatActivity {
         Date currentDate = Calendar.getInstance().getTime();
         DateFormat format = new SimpleDateFormat("yyyy/MM/dd/kk:mm:ss", Locale.US);
         return format.format(currentDate);
+    }
+    private void makeToast(String input) {
+        Toast.makeText(getApplicationContext(), input, Toast.LENGTH_SHORT).show();
     }
 }

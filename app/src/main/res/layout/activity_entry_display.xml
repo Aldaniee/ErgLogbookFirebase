@@ -50,9 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbl_date"
-        android:paddingTop="16dp"
-        android:paddingLeft="32dp"
-        android:paddingStart="32dp">
+        android:paddingTop="16dp">
 
         <TextView
             android:id="@+id/lbl_label_time"
@@ -62,6 +60,7 @@
             android:layout_weight="5"
             android:focusable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
             android:text="time"/>
         <TextView
             android:id="@+id/lbl_label_meter"
@@ -71,6 +70,7 @@
             android:layout_weight="5"
             android:focusable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
             android:text="meter"/>
         <TextView
             android:id="@+id/lbl_label_measurement"
@@ -80,6 +80,7 @@
             android:layout_weight="5"
             android:focusable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
             android:text="/500m"/>
         <TextView
             android:id="@+id/lbl_label_rate"
@@ -89,6 +90,7 @@
             android:layout_weight="3"
             android:focusable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
             android:text="s/m"/>
         <TextView
             android:id="@+id/lbl_label_heart"
@@ -98,6 +100,7 @@
             android:clickable="true"
             android:focusable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
             android:text="hr"/>
     </LinearLayout>
 
@@ -111,9 +114,8 @@
         android:divider="@android:color/black"
         tools:listitem="@layout/item_entry"
         android:layout_alignParentLeft="true"
-        android:paddingLeft="32dp"
         android:paddingTop="8dp"
-        android:paddingStart="32dp" />
+ />
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -125,20 +127,25 @@
 
         <EditText
             android:id="@+id/writeEditText"
+            android:background="@color/colorWhite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="4dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textAlignment="center"
+            />
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/saveDoneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:enabled="false"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/save_button_label" />
+            android:text="@string/lbl_exit_btn" />
 
     </LinearLayout>
 </RelativeLayout>

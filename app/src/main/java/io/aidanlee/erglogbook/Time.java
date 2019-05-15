@@ -138,11 +138,23 @@ public class Time implements Parcelable {
     @Override
     public String toString() {
         String displayString = "";
-        if(hr != 0)
+        if(hr != 0) {
             displayString += (hr + ":");
+            if (min < 10)
+                displayString += ("0");
+        }
         displayString += (min + ":");
-        displayString += sec;
-        displayString += ms;
+        if(sec > 9)
+            displayString += sec;
+        else
+            displayString += ("0" + sec);
+        if(ms > 0) {
+            displayString += ".";
+            if (ms > 9)
+                displayString += ms;
+            else
+                displayString += ("0" + ms);
+        }
         return displayString;
     }
 

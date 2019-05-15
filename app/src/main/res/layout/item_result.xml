@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:text="7:00"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:text="2000"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
     <TextView
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:text="1:30"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
     <TextView
@@ -37,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:text="30"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
     <TextView
@@ -45,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:text="180"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
